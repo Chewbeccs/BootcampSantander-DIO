@@ -1,36 +1,39 @@
 package program;
 import java.util.Scanner;
-import paramentrosInvalidos.ParamentrosInvalidosException;
+import parametrosInvalidos.ParametrosInvalidosException;
 
 public class Contador {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Digite o priemiro número: ");
-        int parametroUm = sc.nextInt();
+        try { 
+            System.out.println("Digite o primeiro número: ");
+            int parametroUm = sc.nextInt();
 
-        System.out.println("Digite o segundo número: ");
-        int parametroDois = sc.nextInt();
+            System.out.println("Digite o segundo número: ");
+            int parametroDois = sc.nextInt();
 
-        int intervalo = parametroDois - parametroUm;
+            int intervalo = parametroDois - parametroUm;
 
         verificarParametro(parametroUm, parametroDois);
-
-           try { 
-            for(int i = 0; i <= intervalo; i++){           
+           
+            for(int i = 1; i <= intervalo; i++){           
                                     
-                System.out.println("Imprimindo numero: " + (parametroUm + i));
-            }
-            
+                System.out.println("Imprimindo numero: " + i);
+            }   
+
+            } catch (ParametrosInvalidosException e) {
+                System.out.println(e.getMessage());
+                
             } finally { 
-            sc.close();
+            sc.close(); 
            }
 
          }            
-             static void verificarParametro (int parametroUm, int parametroDois) throws ParamentrosInvalidosException{
+             static void verificarParametro (int parametroUm, int parametroDois) throws ParametrosInvalidosException{
             if (parametroUm > parametroDois) {
                
-                throw new ParamentrosInvalidosException("O primeiro número deve ser menor ou igual ao segundo número.");
+                throw new ParametrosInvalidosException("O primeiro número deve ser menor ao segundo número.");
             }
         }
     }
